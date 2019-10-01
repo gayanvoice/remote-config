@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.remoteconfig.library.RemoteConfig;
+import com.remoteconfig.library.*;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,20 +27,12 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         textStatus = findViewById(R.id.textStatus);
 
-        RemoteConfig remoteConfig = new RemoteConfig(MainActivity.this);
-        remoteConfig.setURL("https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-config.json");
-
-
 
 
         textView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-
-
-
-
 
 
 
