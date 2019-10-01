@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.remoteconfig.library.Remote;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -20,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     TextView textView, textStatus;
-    Remote remote;
+
     String StringGetAppURL;
 
 
@@ -38,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         textStatus = findViewById(R.id.textStatus);
 
 
-        remote = new Remote();
+
 
 
         textView.setOnClickListener(new View.OnClickListener() {
