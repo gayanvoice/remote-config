@@ -55,10 +55,52 @@ public class RemoteParams {
             JSONObject jsonResponse = new JSONObject(jsonPref);
             return jsonResponse.getJSONObject(param);
         } catch (JSONException e) {
-            return "{\"name\":\"John\"}";
+            return null;
         }
     }
 
+    public JSONObject getJSONObject(String param, JSONObject jsonObject){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String jsonPref = prefs.getString(PREF, DEFAULT_VALUE);
+        try {
+            JSONObject jsonResponse = new JSONObject(jsonPref);
+            return jsonResponse.getJSONObject(param);
+        } catch (JSONException e) {
+            return jsonObject;
+        }
+    }
 
+    public JSONArray getJSONArray(String param){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String jsonPref = prefs.getString(PREF, DEFAULT_VALUE);
+        try {
+            JSONObject jsonResponse = new JSONObject(jsonPref);
+            return jsonResponse.getJSONArray(param);
+        } catch (JSONException e) {
+            return null;
+        }
+    }
+
+    public JSONArray getJSONArray(String param, JSONArray jsonArray){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String jsonPref = prefs.getString(PREF, DEFAULT_VALUE);
+        try {
+            JSONObject jsonResponse = new JSONObject(jsonPref);
+            return jsonResponse.getJSONArray(param);
+        } catch (JSONException e) {
+            return jsonArray;
+        }
+    }
+
+    public boolean getBoolean(String param, boolean defaultValue){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String jsonPref = prefs.getString(PREF, DEFAULT_VALUE);
+        try {
+            JSONObject jsonResponse = new JSONObject(jsonPref);
+            return jsonResponse.getBoolean(param);
+        } catch (JSONException e) {
+            return defaultValue;
+        }
+    }
 
 }

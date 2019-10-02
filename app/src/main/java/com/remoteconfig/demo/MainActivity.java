@@ -48,8 +48,9 @@ public class MainActivity extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onComplete() {
+
                                 RemoteParams remoteParams = new RemoteParams(MainActivity.this);
-                                textView.setText(String.valueOf(remoteParams.getJSONObject("number", "{ name}")));
+                                textView.setText(String.valueOf(remoteParams.getBoolean("boolean", false)));
 
                                 textStatus.setText(R.string.app_response);
                             }
