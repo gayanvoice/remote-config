@@ -1,9 +1,8 @@
 {
   "ads":"true",
-  "update":[{
-    "version":"sdf.sd';fs;df",
-    "title":"This app is now Open Source",
-    "description":"The App is available at github.com/gayankuruppu/android-vpn-client-ics-openvpn",
-    "size":"https://git.io/JeY69"
-  }]
+  "age":30,
+  "employee":{"name":"John", "age":30, "city":"New York"},
+  "employees":["John", "Anna", "Peter"],
+  "sale":true,
+  "middlename":null
 }
