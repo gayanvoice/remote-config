@@ -3,7 +3,6 @@ package com.remoteconfig.demo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,10 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     TextView textView, textStatus;
-    String StringGetAppURL;
 
     RemoteConfig remoteConfig;
-    RemoteSettings remoteSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +30,9 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         textStatus = findViewById(R.id.textStatus);
 
-        remoteSettings = new RemoteSettings();
-        remoteSettings.setMethod(0);
-        remoteSettings.setUrl("https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-config.json");
+
 
         textView.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
 
@@ -46,21 +40,24 @@ public class MainActivity extends AppCompatActivity {
                 queue.getCache().clear();
 
                 remoteConfig = new RemoteConfig(
-                    remoteSettings,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onComplete(String Response) {
-                            textView.setText(Response);
-                            textStatus.setText(R.string.app_response);
+                        new RemoteSettings(
+                                0,
+                                "https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-config.json"
+                        ),
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onComplete(String Response) {
+                                textView.setText(Response);
+                                textStatus.setText(R.string.app_response);
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onError(VolleyError error) {
+                                textView.setText(error.toString());
+                                textStatus.setText(R.string.app_error);
+                            }
                         }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onError(VolleyError error) {
-                            textView.setText(error.toString());
-                            textStatus.setText(R.string.app_error);
-                        }
-                    }
                 );
 
 
