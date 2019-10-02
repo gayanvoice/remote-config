@@ -180,6 +180,7 @@ public class RequestQueue {
 
     /** Stops the cache and network dispatchers. */
     public void stop() {
+
         if (mCacheDispatcher != null) {
             mCacheDispatcher.quit();
         }

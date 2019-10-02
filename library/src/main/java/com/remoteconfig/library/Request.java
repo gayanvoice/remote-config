@@ -138,19 +138,24 @@ public abstract class Request<T> implements Comparable<Request<T>> {
     }
 
     /**
-     * Creates a new request with the given method (one of the values from {@link Method}), URL, and
-     * error listener. Note that the normal response listener is not provided here as delivery of
-     * responses is provided by subclasses, who have a better idea of how to deliver an
-     * already-parsed response.
+     * Creates a new request with the given method (one of the values from {@link Method})
+     *
      */
+
     public Request(int method, String url, @Nullable Response.ErrorListener listener) {
         mMethod = method;
         mUrl = url;
         mErrorListener = listener;
         setRetryPolicy(new DefaultRetryPolicy());
-
         mDefaultTrafficStatsTag = findDefaultTrafficStatsTag(url);
     }
+
+
+
+
+
+
+
 
     /** Return the method for this request. Can be one of the values in {@link Method}. */
     public int getMethod() {
@@ -621,7 +626,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
             listener = mErrorListener;
         }
         if (listener != null) {
-            listener.onErrorResponse(error);
+            listener.onError(error);
         }
     }
 

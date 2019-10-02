@@ -21,8 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView textView, textStatus;
     String StringGetAppURL;
-
-
+    StringRequest remoteConfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,30 +43,31 @@ public class MainActivity extends AppCompatActivity {
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
                 queue.getCache().clear();
 
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, StringGetAppURL,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String Response) {
-                                textView.setText(Response);
-                                textStatus.setText(R.string.app_response);
-                            }
-                        }, new Response.ErrorListener() {
+                remoteConfig = new StringRequest(
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onComplete(String Response) {
+                            textView.setText(Response);
+                            textStatus.setText(R.string.app_response);
+                        }
+                    },new Response.ErrorListener() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onError(VolleyError error) {
                         textView.setText(error.toString());
                         textStatus.setText(R.string.app_error);
                     }
                 });
 
-                queue.add(stringRequest);
+                queue.add(remoteConfig);
 
+                /*
                 queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<String>() {
                     @Override
                     public void onRequestFinished(Request<String> request) {
                         textStatus.setText(R.string.app_finish);
                     }
                 });
-
+*/
 
             }
         });
