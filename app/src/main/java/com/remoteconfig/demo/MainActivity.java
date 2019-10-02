@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                 );
 
+                queue.add(remoteConfig);
+
             }
         });
 
