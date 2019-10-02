@@ -19,6 +19,7 @@ package com.remoteconfig.library.toolbox;
 import androidx.annotation.GuardedBy;
 import androidx.annotation.Nullable;
 import com.remoteconfig.library.NetworkResponse;
+import com.remoteconfig.library.RemoteSettings;
 import com.remoteconfig.library.Request;
 import com.remoteconfig.library.Response;
 import com.remoteconfig.library.Response.ErrorListener;
@@ -28,7 +29,7 @@ import java.io.UnsupportedEncodingException;
 
 /** A canned request for retrieving the response body at a given URL as a String. */
 
-public class StringRequest extends Request<String> {
+public class RemoteConfig extends Request<String> {
 
     private final Object mLock = new Object();
     private String url;
@@ -42,12 +43,14 @@ public class StringRequest extends Request<String> {
      *
      */
 
-    public StringRequest(
+    public RemoteConfig(
+            RemoteSettings remoteSettings,
             @Nullable Listener<String> listener,
             @Nullable ErrorListener errorListener) {
-        super(0,  "https://raw.githubusercontnt.com/gayankuruppu/android-remote-config-library/master/remote-config.json", errorListener);
+        super(remoteSettings.getMethod(),  remoteSettings.getUrl(), errorListener);
         mListener = listener;
     }
+
 
     @Override
     public void cancel() {
