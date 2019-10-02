@@ -3,6 +3,5 @@
   "number":300221,
   "json_object":{"name":"John", "age":30, "city":"New York"},
   "json_array":["John", "Anna", "Peter"],
-  "boolean":true,
-  "null_value":null
+  "boolean":true
 }
