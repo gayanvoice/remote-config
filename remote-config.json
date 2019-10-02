@@ -1,8 +1,8 @@
 {
-  "ads":"true",
-  "age":30,
-  "employee":{"name":"John", "age":30, "city":"New York"},
-  "employees":["John", "Anna", "Peter"],
-  "sale":true,
-  "middlename":null
+  "short_text":"gayankuruppu/android-remote-config",
+  "number":300221,
+  "json_object":{"name":"John", "age":30, "city":"New York"},
+  "json_array":["John", "Anna", "Peter"],
+  "boolean":true,
+  "null_value":null
 }
