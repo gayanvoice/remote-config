@@ -305,7 +305,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
         // For callers using DEPRECATED_GET_OR_POST, we assume the method is GET, which matches
         // legacy behavior where all methods had the same cache key. We can't determine which method
         // will be used because doing so requires calling getPostBody() which is expensive and may
-        // throw VolleyError.
+        // throw RemoteError.
         // TODO(#190): Remove support for non-GET methods.
         int method = getMethod();
         if (method == Method.GET || method == Method.DEPRECATED_GET_OR_POST) {
@@ -556,7 +556,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
     /**
      * Returns the socket timeout in milliseconds per retry attempt. (This value can be changed per
      * retry attempt if a backoff is specified via backoffTimeout()). If there are no retry attempts
-     * remaining, this will cause delivery of a {@link VolleyError} error.
+     * remaining, this will cause delivery of a {@link RemoteError} error.
      */
     public final int getTimeoutMs() {
         return getRetryPolicy().getCurrentTimeout();
@@ -599,11 +599,11 @@ public abstract class Request<T> implements Comparable<Request<T>> {
      *
      * <p>The default implementation just returns the passed 'networkError'.
      *
-     * @param volleyError the error retrieved from the network
-     * @return an volleyError augmented with additional information
+     * @param remoteError the error retrieved from the network
+     * @return an remoteError augmented with additional information
      */
-    protected VolleyError parseNetworkError(VolleyError volleyError) {
-        return volleyError;
+    protected RemoteError parseNetworkError(RemoteError remoteError) {
+        return remoteError;
     }
 
     /**
@@ -621,7 +621,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
      *
      * @param error Error details
      */
-    public void deliverError(VolleyError error) {
+    public void deliverError(RemoteError error) {
         Response.ErrorListener listener;
         synchronized (mLock) {
             listener = mErrorListener;

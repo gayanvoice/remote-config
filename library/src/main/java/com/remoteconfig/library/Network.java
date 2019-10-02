@@ -23,8 +23,8 @@ public interface Network {
      *
      * @param request Request to process
      * @return A {@link NetworkResponse} with data and caching metadata; will never be null
-     * @throws VolleyError on errors
+     * @throws RemoteError on errors
      */
     //performRequest
-    NetworkResponse performRequest(Request<?> request) throws VolleyError;
+    NetworkResponse performRequest(Request<?> request) throws RemoteError;
 }

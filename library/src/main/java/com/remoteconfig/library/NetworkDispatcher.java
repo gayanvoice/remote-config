@@ -157,22 +157,22 @@ public class NetworkDispatcher extends Thread {
             request.markDelivered();
             mDelivery.postResponse(request, response);
             request.notifyListenerResponseReceived(response);
-        } catch (VolleyError volleyError) {
-            volleyError.setNetworkTimeMs(SystemClock.elapsedRealtime() - startTimeMs);
-            parseAndDeliverNetworkError(request, volleyError);
+        } catch (RemoteError remoteError) {
+            remoteError.setNetworkTimeMs(SystemClock.elapsedRealtime() - startTimeMs);
+            parseAndDeliverNetworkError(request, remoteError);
             request.notifyListenerResponseNotUsable();
         } catch (Exception e) {
             VolleyLog.e(e, "Unhandled exception %s", e.toString());
-            VolleyError volleyError = new VolleyError(e);
-            volleyError.setNetworkTimeMs(SystemClock.elapsedRealtime() - startTimeMs);
-            mDelivery.postError(request, volleyError);
+            RemoteError remoteError = new RemoteError(e);
+            remoteError.setNetworkTimeMs(SystemClock.elapsedRealtime() - startTimeMs);
+            mDelivery.postError(request, remoteError);
             request.notifyListenerResponseNotUsable();
         } finally {
             request.sendEvent(RequestQueue.RequestEvent.REQUEST_NETWORK_DISPATCH_FINISHED);
         }
     }
 
-    private void parseAndDeliverNetworkError(Request<?> request, VolleyError error) {
+    private void parseAndDeliverNetworkError(Request<?> request, RemoteError error) {
         error = request.parseNetworkError(error);
         mDelivery.postError(request, error);
     }

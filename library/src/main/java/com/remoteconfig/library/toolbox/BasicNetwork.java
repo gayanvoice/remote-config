@@ -22,9 +22,9 @@ import com.remoteconfig.library.Cache.Entry;
 import com.remoteconfig.library.Header;
 import com.remoteconfig.library.Network;
 import com.remoteconfig.library.NetworkResponse;
+import com.remoteconfig.library.RemoteError;
 import com.remoteconfig.library.Request;
 import com.remoteconfig.library.RetryPolicy;
-import com.remoteconfig.library.VolleyError;
 import com.remoteconfig.library.VolleyLog;
 
 import java.io.IOException;
@@ -106,7 +106,7 @@ public class BasicNetwork implements Network {
 
     //performRequest
     @Override
-    public NetworkResponse performRequest(Request<?> request) throws VolleyError {
+    public NetworkResponse performRequest(Request<?> request) throws RemoteError {
         long requestStart = SystemClock.elapsedRealtime();
         while (true) {
             HttpResponse httpResponse = null;
@@ -166,7 +166,7 @@ public class BasicNetwork implements Network {
                         SystemClock.elapsedRealtime() - requestStart,
                         responseHeaders);
             } catch (SocketTimeoutException e) {
-                attemptRetryOnException("socket", request, new VolleyError());
+                attemptRetryOnException("socket", request, new RemoteError());
             } catch (MalformedURLException e) {
                 throw new RuntimeException("Bad URL " + request.getUrl(), e);
             } catch (IOException e) {
@@ -174,7 +174,7 @@ public class BasicNetwork implements Network {
                 if (httpResponse != null) {
                     statusCode = httpResponse.getStatusCode();
                 } else {
-                    throw new VolleyError(e);
+                    throw new RemoteError(e);
                 }
                 VolleyLog.e("Unexpected response code %d for %s", statusCode, request.getUrl());
                 NetworkResponse networkResponse;
@@ -192,20 +192,20 @@ public class BasicNetwork implements Network {
                                 "auth", request, new AuthFailureError(networkResponse));
                     } else if (statusCode >= 400 && statusCode <= 499) {
                         // Don't retry other client errors.
-                        throw new VolleyError(networkResponse);
+                        throw new RemoteError(networkResponse);
                     } else if (statusCode >= 500 && statusCode <= 599) {
                         if (request.shouldRetryServerErrors()) {
                             attemptRetryOnException(
-                                    "server", request, new VolleyError(networkResponse));
+                                    "server", request, new RemoteError(networkResponse));
                         } else {
-                            throw new VolleyError(networkResponse);
+                            throw new RemoteError(networkResponse);
                         }
                     } else {
                         // 3xx? No reason to retry.
-                        throw new VolleyError(networkResponse);
+                        throw new RemoteError(networkResponse);
                     }
                 } else {
-                    attemptRetryOnException("network", request, new VolleyError());
+                    attemptRetryOnException("network", request, new RemoteError());
                 }
             }
         }
@@ -233,13 +233,13 @@ public class BasicNetwork implements Network {
      * @param request The request to use.
      */
     private static void attemptRetryOnException(
-            String logPrefix, Request<?> request, VolleyError exception) throws VolleyError {
+            String logPrefix, Request<?> request, RemoteError exception) throws RemoteError {
         RetryPolicy retryPolicy = request.getRetryPolicy();
         int oldTimeout = request.getTimeoutMs();
 
         try {
             retryPolicy.retry(exception);
-        } catch (VolleyError e) {
+        } catch (RemoteError e) {
             request.addMarker(
                     String.format("%s-timeout-giveup [timeout=%s]", logPrefix, oldTimeout));
             throw e;
@@ -274,12 +274,12 @@ public class BasicNetwork implements Network {
 
     /** Reads the contents of an InputStream into a byte[]. */
     private byte[] inputStreamToBytes(InputStream in, int contentLength)
-            throws IOException, VolleyError {
+            throws IOException, RemoteError {
         PoolingByteArrayOutputStream bytes = new PoolingByteArrayOutputStream(mPool, contentLength);
         byte[] buffer = null;
         try {
             if (in == null) {
-                throw new VolleyError();
+                throw new RemoteError();
             }
             buffer = mPool.getBuf(1024);
             int count;

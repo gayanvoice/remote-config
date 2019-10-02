@@ -16,9 +16,6 @@
 
 package com.remoteconfig.library;
 
-import com.remoteconfig.library.DefaultRetryPolicy;
-import com.remoteconfig.library.VolleyError;
-
 /**
  * Retry policy for a request.
  *
@@ -26,7 +23,7 @@ import com.remoteconfig.library.VolleyError;
  *
  * <ul>
  *   <li>The number of tries. This can be a simple counter or more complex logic based on the type
- *       of error passed to {@link #retry(VolleyError)}, although {@link #getCurrentRetryCount()}
+ *       of error passed to {@link #retry(RemoteError)}, although {@link #getCurrentRetryCount()}
  *       should always return the current retry count for logging purposes.
  *   <li>The request timeout for each try, via {@link #getCurrentTimeout()}. In the common case that
  *       a request times out before the response has been received from the server, retrying again
@@ -52,8 +49,8 @@ public interface RetryPolicy {
      * Prepares for the next retry by applying a backoff to the timeout.
      *
      * @param error The error code of the last attempt.
-     * @throws VolleyError In the event that the retry could not be performed (for example if we ran
+     * @throws RemoteError In the event that the retry could not be performed (for example if we ran
      *     out of attempts), the passed in error is thrown.
      */
-    void retry(VolleyError error) throws VolleyError;
+    void retry(RemoteError error) throws RemoteError;
 }

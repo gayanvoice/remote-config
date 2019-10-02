@@ -7,10 +7,9 @@ import android.view.View;
 import android.widget.TextView;
 
 
-import com.remoteconfig.library.RemoteSettings;
 import com.remoteconfig.library.RequestQueue;
 import com.remoteconfig.library.Response;
-import com.remoteconfig.library.VolleyError;
+import com.remoteconfig.library.RemoteError;
 
 import com.remoteconfig.library.toolbox.RemoteConfig;
 import com.remoteconfig.library.toolbox.Volley;
@@ -21,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textView, textStatus;
 
     RemoteConfig remoteConfig;
+    String mUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         textView = findViewById(R.id.textView);
         textStatus = findViewById(R.id.textStatus);
-
-
+        mUrl ="https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remoteconfig.json";
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,20 +39,17 @@ public class MainActivity extends AppCompatActivity {
                 queue.getCache().clear();
 
                 remoteConfig = new RemoteConfig(
-                        new RemoteSettings(
-                                0,
-                                "https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-config.json"
-                        ),
+                        mUrl,
                         new Response.Listener<String>() {
                             @Override
-                            public void onComplete(String Response) {
-                                textView.setText(Response);
+                            public void onComplete() {
+                                textView.setText(R.string.app_response);
                                 textStatus.setText(R.string.app_response);
                             }
                         },
                         new Response.ErrorListener() {
                             @Override
-                            public void onError(VolleyError error) {
+                            public void onError(RemoteError error) {
                                 textView.setText(error.toString());
                                 textStatus.setText(R.string.app_error);
                             }

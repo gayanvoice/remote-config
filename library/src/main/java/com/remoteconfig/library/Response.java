@@ -26,7 +26,7 @@ public class Response<T> {
     /** Callback interface for delivering parsed responses. */
     public interface Listener<T> {
         /** Called when a response is received. */
-        void onComplete(T response);
+        void onComplete();
     }
 
     /** Callback interface for delivering error responses. */
@@ -35,7 +35,7 @@ public class Response<T> {
          * Callback method that an error has been occurred with the provided error code and optional
          * user-readable message.
          */
-        void onError(VolleyError error);
+        void onError(RemoteError error);
     }
 
     /** Returns a successful response containing the parsed result. */
@@ -47,7 +47,7 @@ public class Response<T> {
      * Returns a failed response containing the given error code and an optional localized message
      * displayed to the user.
      */
-    public static <T> Response<T> error(VolleyError error) {
+    public static <T> Response<T> error(RemoteError error) {
         return new Response<>(error);
     }
 
@@ -58,7 +58,7 @@ public class Response<T> {
     public final Cache.Entry cacheEntry;
 
     /** Detailed error information if <code>errorCode != OK</code>. */
-    public final VolleyError error;
+    public final RemoteError error;
 
     /** True if this response was a soft-expired one and a second one MAY be coming. */
     public boolean intermediate = false;
@@ -74,7 +74,7 @@ public class Response<T> {
         this.error = null;
     }
 
-    private Response(VolleyError error) {
+    private Response(RemoteError error) {
         this.result = null;
         this.cacheEntry = null;
         this.error = error;

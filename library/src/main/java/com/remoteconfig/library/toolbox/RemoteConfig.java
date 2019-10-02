@@ -16,10 +16,11 @@
 
 package com.remoteconfig.library.toolbox;
 
+import android.util.Log;
+
 import androidx.annotation.GuardedBy;
 import androidx.annotation.Nullable;
 import com.remoteconfig.library.NetworkResponse;
-import com.remoteconfig.library.RemoteSettings;
 import com.remoteconfig.library.Request;
 import com.remoteconfig.library.Response;
 import com.remoteconfig.library.Response.ErrorListener;
@@ -44,10 +45,10 @@ public class RemoteConfig extends Request<String> {
      */
 
     public RemoteConfig(
-            RemoteSettings remoteSettings,
+            String url,
             @Nullable Listener<String> listener,
             @Nullable ErrorListener errorListener) {
-        super(remoteSettings.getMethod(),  remoteSettings.getUrl(), errorListener);
+        super(0, url, errorListener);
         mListener = listener;
     }
 
@@ -67,8 +68,12 @@ public class RemoteConfig extends Request<String> {
             listener = mListener;
         }
         if (listener != null) {
-            listener.onComplete(response);
+            listener.onComplete();
         }
+
+
+        Log.e("Response", response);
+
     }
 
     @Override

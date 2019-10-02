@@ -27,5 +27,5 @@ public interface ResponseDelivery {
     void postResponse(Request<?> request, Response<?> response, Runnable runnable);
 
     /** Posts an error for the given request. */
-    void postError(Request<?> request, VolleyError error);
+    void postError(Request<?> request, RemoteError error);
 }

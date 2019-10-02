@@ -1,28 +1,28 @@
 package com.remoteconfig.library;
 
-public class VolleyError extends Exception {
+public class RemoteError extends Exception {
     public final NetworkResponse networkResponse;
     private long networkTimeMs;
 
-    public VolleyError() {
+    public RemoteError() {
         networkResponse = null;
     }
 
-    public VolleyError(NetworkResponse response) {
+    public RemoteError(NetworkResponse response) {
         networkResponse = response;
     }
 
-    public VolleyError(String exceptionMessage) {
+    public RemoteError(String exceptionMessage) {
         super(exceptionMessage);
         networkResponse = null;
     }
 
-    public VolleyError(String exceptionMessage, Throwable reason) {
+    public RemoteError(String exceptionMessage, Throwable reason) {
         super(exceptionMessage, reason);
         networkResponse = null;
     }
 
-    public VolleyError(Throwable cause) {
+    public RemoteError(Throwable cause) {
         super(cause);
         networkResponse = null;
     }
