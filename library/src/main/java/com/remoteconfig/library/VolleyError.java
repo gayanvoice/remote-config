@@ -30,8 +30,4 @@ public class VolleyError extends Exception {
     /* package */ void setNetworkTimeMs(long networkTimeMs) {
         this.networkTimeMs = networkTimeMs;
     }
-
-    public long getNetworkTimeMs() {
-        return networkTimeMs;
-    }
 }

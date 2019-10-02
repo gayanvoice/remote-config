@@ -25,16 +25,6 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.GuardedBy;
 import androidx.annotation.Nullable;
 
-import com.remoteconfig.library.AuthFailureError;
-import com.remoteconfig.library.Cache;
-import com.remoteconfig.library.DefaultRetryPolicy;
-import com.remoteconfig.library.NetworkResponse;
-import com.remoteconfig.library.RequestQueue;
-import com.remoteconfig.library.Response;
-import com.remoteconfig.library.ResponseDelivery;
-import com.remoteconfig.library.RetryPolicy;
-import com.remoteconfig.library.TimeoutError;
-import com.remoteconfig.library.VolleyError;
 import com.remoteconfig.library.VolleyLog.MarkerLog;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -309,7 +299,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
         // For callers using DEPRECATED_GET_OR_POST, we assume the method is GET, which matches
         // legacy behavior where all methods had the same cache key. We can't determine which method
         // will be used because doing so requires calling getPostBody() which is expensive and may
-        // throw AuthFailureError.
+        // throw VolleyError.
         // TODO(#190): Remove support for non-GET methods.
         int method = getMethod();
         if (method == Method.GET || method == Method.DEPRECATED_GET_OR_POST) {
@@ -560,7 +550,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
     /**
      * Returns the socket timeout in milliseconds per retry attempt. (This value can be changed per
      * retry attempt if a backoff is specified via backoffTimeout()). If there are no retry attempts
-     * remaining, this will cause delivery of a {@link TimeoutError} error.
+     * remaining, this will cause delivery of a {@link VolleyError} error.
      */
     public final int getTimeoutMs() {
         return getRetryPolicy().getCurrentTimeout();
@@ -604,7 +594,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
      * <p>The default implementation just returns the passed 'networkError'.
      *
      * @param volleyError the error retrieved from the network
-     * @return an NetworkError augmented with additional information
+     * @return an volleyError augmented with additional information
      */
     protected VolleyError parseNetworkError(VolleyError volleyError) {
         return volleyError;

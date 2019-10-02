@@ -46,6 +46,7 @@ class AdaptedHttpStack extends BaseHttpStack {
             throws IOException, AuthFailureError {
         org.apache.http.HttpResponse apacheResp;
         try {
+            //performRequest
             apacheResp = mHttpStack.performRequest(request, additionalHeaders);
         } catch (ConnectTimeoutException e) {
             // BasicNetwork won't know that this exception should be retried like a timeout, since

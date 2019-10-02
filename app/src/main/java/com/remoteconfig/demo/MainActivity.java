@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
                 queue.getCache().clear();
+
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, StringGetAppURL,
                         new Response.Listener<String>() {
                             @Override
@@ -55,11 +56,11 @@ public class MainActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         textView.setText(error.toString());
                         textStatus.setText(R.string.app_error);
-
                     }
                 });
 
                 queue.add(stringRequest);
+
                 queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<String>() {
                     @Override
                     public void onRequestFinished(Request<String> request) {

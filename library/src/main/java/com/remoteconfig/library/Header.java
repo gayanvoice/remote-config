@@ -18,6 +18,7 @@ package com.remoteconfig.library;
 import android.text.TextUtils;
 
 /** An HTTP header. */
+
 public final class Header {
     private final String mName;
     private final String mValue;

@@ -18,18 +18,12 @@ package com.remoteconfig.library.toolbox;
 
 import android.os.SystemClock;
 import com.remoteconfig.library.AuthFailureError;
-import com.remoteconfig.library.Cache;
 import com.remoteconfig.library.Cache.Entry;
-import com.remoteconfig.library.ClientError;
 import com.remoteconfig.library.Header;
 import com.remoteconfig.library.Network;
-import com.remoteconfig.library.NetworkError;
 import com.remoteconfig.library.NetworkResponse;
-import com.remoteconfig.library.NoConnectionError;
 import com.remoteconfig.library.Request;
 import com.remoteconfig.library.RetryPolicy;
-import com.remoteconfig.library.ServerError;
-import com.remoteconfig.library.TimeoutError;
 import com.remoteconfig.library.VolleyError;
 import com.remoteconfig.library.VolleyLog;
 
@@ -110,6 +104,7 @@ public class BasicNetwork implements Network {
         mPool = pool;
     }
 
+    //performRequest
     @Override
     public NetworkResponse performRequest(Request<?> request) throws VolleyError {
         long requestStart = SystemClock.elapsedRealtime();
@@ -171,7 +166,7 @@ public class BasicNetwork implements Network {
                         SystemClock.elapsedRealtime() - requestStart,
                         responseHeaders);
             } catch (SocketTimeoutException e) {
-                attemptRetryOnException("socket", request, new TimeoutError());
+                attemptRetryOnException("socket", request, new VolleyError());
             } catch (MalformedURLException e) {
                 throw new RuntimeException("Bad URL " + request.getUrl(), e);
             } catch (IOException e) {
@@ -179,7 +174,7 @@ public class BasicNetwork implements Network {
                 if (httpResponse != null) {
                     statusCode = httpResponse.getStatusCode();
                 } else {
-                    throw new NoConnectionError(e);
+                    throw new VolleyError(e);
                 }
                 VolleyLog.e("Unexpected response code %d for %s", statusCode, request.getUrl());
                 NetworkResponse networkResponse;
@@ -197,20 +192,20 @@ public class BasicNetwork implements Network {
                                 "auth", request, new AuthFailureError(networkResponse));
                     } else if (statusCode >= 400 && statusCode <= 499) {
                         // Don't retry other client errors.
-                        throw new ClientError(networkResponse);
+                        throw new VolleyError(networkResponse);
                     } else if (statusCode >= 500 && statusCode <= 599) {
                         if (request.shouldRetryServerErrors()) {
                             attemptRetryOnException(
-                                    "server", request, new ServerError(networkResponse));
+                                    "server", request, new VolleyError(networkResponse));
                         } else {
-                            throw new ServerError(networkResponse);
+                            throw new VolleyError(networkResponse);
                         }
                     } else {
                         // 3xx? No reason to retry.
-                        throw new ServerError(networkResponse);
+                        throw new VolleyError(networkResponse);
                     }
                 } else {
-                    attemptRetryOnException("network", request, new NetworkError());
+                    attemptRetryOnException("network", request, new VolleyError());
                 }
             }
         }
@@ -279,12 +274,12 @@ public class BasicNetwork implements Network {
 
     /** Reads the contents of an InputStream into a byte[]. */
     private byte[] inputStreamToBytes(InputStream in, int contentLength)
-            throws IOException, ServerError {
+            throws IOException, VolleyError {
         PoolingByteArrayOutputStream bytes = new PoolingByteArrayOutputStream(mPool, contentLength);
         byte[] buffer = null;
         try {
             if (in == null) {
-                throw new ServerError();
+                throw new VolleyError();
             }
             buffer = mPool.getBuf(1024);
             int count;

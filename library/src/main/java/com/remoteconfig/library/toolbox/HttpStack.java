@@ -43,6 +43,7 @@ public interface HttpStack {
      *     Request#getHeaders()}
      * @return the HTTP response
      */
+    // performRequest
     HttpResponse performRequest(Request<?> request, Map<String, String> additionalHeaders)
             throws IOException, AuthFailureError;
 }
