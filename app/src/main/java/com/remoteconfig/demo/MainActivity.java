@@ -3,6 +3,7 @@ package com.remoteconfig.demo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -47,11 +48,8 @@ public class MainActivity extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onComplete() {
-
                                 RemoteParams remoteParams = new RemoteParams(MainActivity.this);
-                                textView.setText(remoteParams.getString("ads", "one"));
-
-
+                                textView.setText(String.valueOf(remoteParams.getJSONObject("number", "{ name}")));
 
                                 textStatus.setText(R.string.app_response);
                             }

@@ -12,6 +12,7 @@ public class RemoteParams {
 
     private Context context;
     String PREF = "remote_params";
+    String DEFAULT_VALUE = "defaultValue";
 
     public RemoteParams(Context context){
         this.context = context;
@@ -27,22 +28,36 @@ public class RemoteParams {
 
     public String getString(String param, String defaultValue){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String jsonPref = prefs.getString(param, defaultValue);
-
+        String jsonPref = prefs.getString(PREF, DEFAULT_VALUE);
         try {
-            JSONObject json_response = new JSONObject(jsonPref);
-            return json_response.getString(param);
+            JSONObject jsonResponse = new JSONObject(jsonPref);
+            return jsonResponse.getString(param);
         } catch (JSONException e) {
-            return e.toString();
+            return defaultValue;
         }
-
-
-
-
-
-
     }
 
+    public int getInt(String param, int defaultValue){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String jsonPref = prefs.getString(PREF, DEFAULT_VALUE);
+        try {
+            JSONObject jsonResponse = new JSONObject(jsonPref);
+            return jsonResponse.getInt(param);
+        } catch (JSONException e) {
+            return defaultValue;
+        }
+    }
+
+    public JSONObject getJSONObject(String param){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String jsonPref = prefs.getString(PREF, DEFAULT_VALUE);
+        try {
+            JSONObject jsonResponse = new JSONObject(jsonPref);
+            return jsonResponse.getJSONObject(param);
+        } catch (JSONException e) {
+            return "{\"name\":\"John\"}";
+        }
+    }
 
 
 

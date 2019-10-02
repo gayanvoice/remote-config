@@ -74,6 +74,7 @@ public class RemoteConfig extends Request<String> {
         }
         if (listener != null) {
             // set values
+            Log.e("onComplete", response);
             RemoteParams remoteParams = new RemoteParams(mContext);
             remoteParams.setResponse(response);
             listener.onComplete();
