@@ -16,11 +16,13 @@
 
 package com.remoteconfig.library.toolbox;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.GuardedBy;
 import androidx.annotation.Nullable;
 import com.remoteconfig.library.NetworkResponse;
+import com.remoteconfig.library.RemoteParams;
 import com.remoteconfig.library.Request;
 import com.remoteconfig.library.Response;
 import com.remoteconfig.library.Response.ErrorListener;
@@ -33,7 +35,8 @@ import java.io.UnsupportedEncodingException;
 public class RemoteConfig extends Request<String> {
 
     private final Object mLock = new Object();
-    private String url;
+
+    private Context mContext;
 
     @Nullable
     @GuardedBy("mLock")
@@ -45,11 +48,13 @@ public class RemoteConfig extends Request<String> {
      */
 
     public RemoteConfig(
+            Context context,
             String url,
             @Nullable Listener<String> listener,
             @Nullable ErrorListener errorListener) {
         super(0, url, errorListener);
         mListener = listener;
+        mContext = context;
     }
 
 
@@ -68,11 +73,11 @@ public class RemoteConfig extends Request<String> {
             listener = mListener;
         }
         if (listener != null) {
+            // set values
+            RemoteParams remoteParams = new RemoteParams(mContext);
+            remoteParams.setResponse(response);
             listener.onComplete();
         }
-
-
-        Log.e("Response", response);
 
     }
 

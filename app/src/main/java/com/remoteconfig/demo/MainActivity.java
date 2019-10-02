@@ -7,12 +7,15 @@ import android.view.View;
 import android.widget.TextView;
 
 
+import com.remoteconfig.library.RemoteParams;
 import com.remoteconfig.library.RequestQueue;
 import com.remoteconfig.library.Response;
 import com.remoteconfig.library.RemoteError;
 
 import com.remoteconfig.library.toolbox.RemoteConfig;
 import com.remoteconfig.library.toolbox.Volley;
+
+import java.time.chrono.MinguoChronology;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         textView = findViewById(R.id.textView);
         textStatus = findViewById(R.id.textStatus);
-        mUrl ="https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remoteconfig.json";
+        mUrl ="https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-config.json";
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,11 +42,17 @@ public class MainActivity extends AppCompatActivity {
                 queue.getCache().clear();
 
                 remoteConfig = new RemoteConfig(
+                        MainActivity.this,
                         mUrl,
                         new Response.Listener<String>() {
                             @Override
                             public void onComplete() {
-                                textView.setText(R.string.app_response);
+
+                                RemoteParams remoteParams = new RemoteParams(MainActivity.this);
+                                textView.setText(remoteParams.getString("ads", "one"));
+
+
+
                                 textStatus.setText(R.string.app_response);
                             }
                         },
