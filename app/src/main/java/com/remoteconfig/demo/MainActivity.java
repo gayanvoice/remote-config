@@ -3,12 +3,12 @@ package com.remoteconfig.demo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 
 import com.remoteconfig.library.RemoteParams;
+import com.remoteconfig.library.Request;
 import com.remoteconfig.library.RequestQueue;
 import com.remoteconfig.library.Response;
 import com.remoteconfig.library.RemoteError;
@@ -16,7 +16,6 @@ import com.remoteconfig.library.RemoteError;
 import com.remoteconfig.library.toolbox.RemoteConfig;
 import com.remoteconfig.library.toolbox.Volley;
 
-import java.time.chrono.MinguoChronology;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         textView = findViewById(R.id.textView);
         textStatus = findViewById(R.id.textStatus);
+
         mUrl ="https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-config.json";
 
         textView.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onComplete() {
 
                                 RemoteParams remoteParams = new RemoteParams(MainActivity.this);
-                                textView.setText(String.valueOf(remoteParams.getBoolean("boolean", false)));
+                                textView.setText(remoteParams.getString("short_text", "some_text"));
 
                                 textStatus.setText(R.string.app_response);
                             }
@@ -63,18 +63,6 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                 );
-
-
-                queue.add(remoteConfig);
-
-                /*
-                queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<String>() {
-                    @Override
-                    public void onRequestFinished(Request<String> request) {
-                        textStatus.setText(R.string.app_finish);
-                    }
-                });
-*/
 
             }
         });
