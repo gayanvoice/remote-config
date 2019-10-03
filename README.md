@@ -1,15 +1,10 @@
 # Android Remote Config Library
 
 [![](https://jitpack.io/v/gayankuruppu/android-remote-config-library.svg)](https://jitpack.io/#gayankuruppu/android-remote-config-library)
-
 Remote config the appearance and the behavior of your app, without, publishing an app update.
-
 ## Get
-
 ### Gradle
-
 1. Add this to `build.gradle` of project gradle dependency
-
 ```groovy
 allprojects {
 	repositories {
@@ -18,19 +13,14 @@ allprojects {
 	}
 }
 ```
-
 2. Add this to `build.gradle` of app gradle dependency
-
 ```groovy
 dependencies {
 	implementation 'com.github.gayankuruppu:android-remote-config-library:1.0.3'
 }
 ```
-
 ### Or
-
 ### Maven
-
 1. Add this to `build.gradle` of project gradle dependency
 
 ```xml
@@ -41,9 +31,7 @@ dependencies {
 	</repository>
 </repositories>
 ```
-
 2. Add this to `build.gradle` of module gradle dependency
-
 ```xml
 <dependency>
 	<groupId>com.github.gayankuruppu</groupId>
@@ -56,16 +44,13 @@ dependencies {
 ```groovy
 <uses-permission android:name="android.permission.INTERNET" />
 ```
-
 ### Java
 #### Import remote config library
 
 ```java
 import com.remoteconfig.library.*;
 ```
-
 #### Set request
-
 ```java
 // set request
 RequestQueue queue = FetchRemote.newRequestQueue(MainActivity.this);
@@ -116,7 +101,6 @@ queue.add(remoteConfig);
 ```java
 import com.remoteconfig.library.*
 ```
-
 #### Set request
 ```kotlin
 // set request
