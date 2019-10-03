@@ -71,10 +71,10 @@ import com.remoteconfig.library.*;
 RequestQueue queue = FetchRemote.newRequestQueue(MainActivity.this);
 
 // url of the json file
-String mUrl ="https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-config.json";
+String url ="https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-config.json";
 
 // request the json file
-RemoteConfig remoteConfig = new RemoteConfig(MainActivity.this, mUrl,
+RemoteConfig remoteConfig = new RemoteConfig(MainActivity.this, url,
 	new Response.Listener<String>() {
 		@Override
 		public void onComplete() {
