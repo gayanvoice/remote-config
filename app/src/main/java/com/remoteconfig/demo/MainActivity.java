@@ -7,14 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 
-import com.remoteconfig.library.RemoteParams;
-import com.remoteconfig.library.RequestQueue;
-import com.remoteconfig.library.Response;
-import com.remoteconfig.library.RemoteError;
-
-import com.remoteconfig.library.toolbox.RemoteConfig;
-import com.remoteconfig.library.toolbox.Volley;
-
+import com.remoteconfig.library.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 // set request
-                RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+                RequestQueue queue = FetchRemote.newRequestQueue(MainActivity.this);
 
                 // url of the json file
                 String mUrl ="https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-config.json";
@@ -47,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onComplete() {
                                 // json file retrieved
                                 RemoteParams remoteParams = new RemoteParams(MainActivity.this);
-                                textView.setText(remoteParams.getString("short_text", "some_text"));
+                                textView.setText(remoteParams.getString("short_text", "default_text"));
 
                                 textStatus.setText(R.string.app_response);
                             }

@@ -41,7 +41,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-/** A network performing Volley requests over an {@link HttpStack}. */
+/** A network performing FetchRemote requests over an {@link HttpStack}. */
+@SuppressWarnings("deprecation")
 public class BasicNetwork implements Network {
     protected static final boolean DEBUG = VolleyLog.DEBUG;
 
@@ -51,8 +52,9 @@ public class BasicNetwork implements Network {
 
     /**
      * @deprecated Should never have been exposed in the API. This field may be removed in a future
-     *     release of Volley.
+     *     release of FetchRemote.
      */
+    @SuppressWarnings("DeprecatedIsStillUsed")
     @Deprecated protected final HttpStack mHttpStack;
 
     private final BaseHttpStack mBaseHttpStack;
@@ -62,8 +64,10 @@ public class BasicNetwork implements Network {
     /**
      * @param httpStack HTTP stack to be used
      * @deprecated use {@link #BasicNetwork(BaseHttpStack)} instead to avoid depending on Apache
-     *     HTTP. This method may be removed in a future release of Volley.
+     *     HTTP. This method may be removed in a future release of FetchRemote.
      */
+
+    @SuppressWarnings("DeprecatedIsStillUsed")
     @Deprecated
     public BasicNetwork(HttpStack httpStack) {
         // If a pool isn't passed in, then build a small default pool that will give us a lot of
@@ -75,8 +79,9 @@ public class BasicNetwork implements Network {
      * @param httpStack HTTP stack to be used
      * @param pool a buffer pool that improves GC performance in copy operations
      * @deprecated use {@link #BasicNetwork(BaseHttpStack, ByteArrayPool)} instead to avoid
-     *     depending on Apache HTTP. This method may be removed in a future release of Volley.
+     *     depending on Apache HTTP. This method may be removed in a future release of FetchRemote.
      */
+    @SuppressWarnings("DeprecatedIsStillUsed")
     @Deprecated
     public BasicNetwork(HttpStack httpStack, ByteArrayPool pool) {
         mHttpStack = httpStack;
@@ -95,6 +100,7 @@ public class BasicNetwork implements Network {
      * @param httpStack HTTP stack to be used
      * @param pool a buffer pool that improves GC performance in copy operations
      */
+    @SuppressWarnings("DeprecatedIsStillUsed")
     public BasicNetwork(BaseHttpStack httpStack, ByteArrayPool pool) {
         mBaseHttpStack = httpStack;
         // Populate mHttpStack for backwards compatibility, since it is a protected field. However,
@@ -307,7 +313,7 @@ public class BasicNetwork implements Network {
      * Converts Headers[] to Map&lt;String, String&gt;.
      *
      * @deprecated Should never have been exposed in the API. This method may be removed in a future
-     *     release of Volley.
+     *     release of FetchRemote.
      */
     @Deprecated
     protected static Map<String, String> convertHeaders(Header[] headers) {

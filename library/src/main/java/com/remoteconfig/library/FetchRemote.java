@@ -1,12 +1,16 @@
-package com.remoteconfig.library.toolbox;
+package com.remoteconfig.library;
 
 import android.content.Context;
 import com.remoteconfig.library.Network;
 import com.remoteconfig.library.RequestQueue;
+import com.remoteconfig.library.toolbox.BaseHttpStack;
+import com.remoteconfig.library.toolbox.BasicNetwork;
+import com.remoteconfig.library.toolbox.DiskBasedCache;
+import com.remoteconfig.library.toolbox.HurlStack;
 
 import java.io.File;
 
-public class Volley {
+public class FetchRemote {
 
     private static final String DEFAULT_CACHE_DIR = "volley";
 

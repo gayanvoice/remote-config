@@ -125,7 +125,7 @@ public class HurlStack extends BaseHttpStack {
         List<Header> headerList = new ArrayList<>(responseHeaders.size());
         for (Map.Entry<String, List<String>> entry : responseHeaders.entrySet()) {
             // HttpUrlConnection includes the status line as a header with a null key; omit it here
-            // since it's not really a header and the rest of Volley assumes non-null keys.
+            // since it's not really a header and the rest of FetchRemote assumes non-null keys.
             if (entry.getKey() != null) {
                 for (String value : entry.getValue()) {
                     headerList.add(new Header(entry.getKey(), value));
@@ -172,7 +172,7 @@ public class HurlStack extends BaseHttpStack {
     /**
      * Initializes an {@link InputStream} from the given {@link HttpURLConnection}.
      *
-     * @param connection
+     * @param connection create a HttpURL connection
      * @return an HttpEntity populated with data from <code>connection</code>.
      */
     private static InputStream inputStreamFromConnection(HttpURLConnection connection) {
@@ -200,9 +200,9 @@ public class HurlStack extends BaseHttpStack {
     /**
      * Opens an {@link HttpURLConnection} with parameters.
      *
-     * @param url
+     * @param url of the remote
      * @return an open connection
-     * @throws IOException
+     * @throws IOException of the method
      */
     private HttpURLConnection openConnection(URL url, Request<?> request) throws IOException {
         HttpURLConnection connection = createConnection(url);

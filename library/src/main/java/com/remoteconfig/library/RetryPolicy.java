@@ -35,7 +35,7 @@ package com.remoteconfig.library;
  * with no delay between them (although the time between tries may increase if the requests are
  * timing out and {@link #getCurrentTimeout()} is returning increasing values).
  *
- * <p>By default, Volley uses {@link DefaultRetryPolicy}.
+ * <p>By default, FetchRemote uses {@link DefaultRetryPolicy}.
  */
 public interface RetryPolicy {
 

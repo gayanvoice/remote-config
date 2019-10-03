@@ -56,10 +56,10 @@ public abstract class BaseHttpStack implements HttpStack {
 
     /**
      * @deprecated use {@link #executeRequest} instead to avoid a dependency on the deprecated
-     *     Apache HTTP library. Nothing in Volley's own source calls this method. However, since
+     *     Apache HTTP library. Nothing in FetchRemote's own source calls this method. However, since
      *     {@link BasicNetwork#mHttpStack} is exposed to subclasses, we provide this implementation
      *     in case legacy client apps are dependent on that field. This method may be removed in a
-     *     future release of Volley.
+     *     future release of FetchRemote.
      */
     @Deprecated
     @Override

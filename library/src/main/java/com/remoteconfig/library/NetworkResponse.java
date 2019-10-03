@@ -37,7 +37,7 @@ public class NetworkResponse {
      * @param networkTimeMs Round-trip network time to receive network response
      * @deprecated see {@link #NetworkResponse(int, byte[], boolean, long, List)}. This constructor
      *     cannot handle server responses containing multiple headers with the same name. This
-     *     constructor may be removed in a future release of Volley.
+     *     constructor may be removed in a future release of FetchRemote.
      */
     @Deprecated
     public NetworkResponse(
@@ -76,7 +76,7 @@ public class NetworkResponse {
      * @param notModified True if the server returned a 304 and the data was already in cache
      * @deprecated see {@link #NetworkResponse(int, byte[], boolean, long, List)}. This constructor
      *     cannot handle server responses containing multiple headers with the same name. This
-     *     constructor may be removed in a future release of Volley.
+     *     constructor may be removed in a future release of FetchRemote.
      */
     @Deprecated
     public NetworkResponse(
@@ -105,7 +105,7 @@ public class NetworkResponse {
      * @param headers Headers returned with this response, or null for none
      * @deprecated see {@link #NetworkResponse(int, byte[], boolean, long, List)}. This constructor
      *     cannot handle server responses containing multiple headers with the same name. This
-     *     constructor may be removed in a future release of Volley.
+     *     constructor may be removed in a future release of FetchRemote.
      */
     @Deprecated
     public NetworkResponse(byte[] data, Map<String, String> headers) {

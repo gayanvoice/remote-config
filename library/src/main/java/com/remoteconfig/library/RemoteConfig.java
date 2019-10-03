@@ -1,4 +1,4 @@
-package com.remoteconfig.library.toolbox;
+package com.remoteconfig.library;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,6 +11,7 @@ import com.remoteconfig.library.Request;
 import com.remoteconfig.library.Response;
 import com.remoteconfig.library.Response.ErrorListener;
 import com.remoteconfig.library.Response.Listener;
+import com.remoteconfig.library.toolbox.HttpHeaderParser;
 
 import java.io.UnsupportedEncodingException;
 

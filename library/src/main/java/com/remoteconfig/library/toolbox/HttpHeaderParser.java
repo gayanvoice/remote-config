@@ -198,8 +198,8 @@ public class HttpHeaderParser {
     }
 
     // Note - these are copied from NetworkResponse to avoid making them public (as needed to access
-    // them from the .toolbox package), which would mean they'd become part of the Volley API.
-    // TODO: Consider obfuscating official releases so we can share utility methods between Volley
+    // them from the .toolbox package), which would mean they'd become part of the FetchRemote API.
+    // TODO: Consider obfuscating official releases so we can share utility methods between FetchRemote
     // and Toolbox without making them public APIs.
 
     static Map<String, String> toHeaderMap(List<Header> allHeaders) {

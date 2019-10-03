@@ -28,8 +28,9 @@ import org.apache.http.HttpResponse;
  *
  * @deprecated This interface should be avoided as it depends on the deprecated Apache HTTP library.
  *     Use {@link BaseHttpStack} to avoid this dependency. This class may be removed in a future
- *     release of Volley.
+ *     release of FetchRemote.
  */
+@SuppressWarnings("DeprecatedIsStillUsed")
 @Deprecated
 public interface HttpStack {
     /**
