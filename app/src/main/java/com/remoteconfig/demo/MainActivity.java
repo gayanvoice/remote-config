@@ -4,26 +4,36 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
 import com.remoteconfig.library.*;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity {
 
 
-    TextView textView, textStatus;
+    TextView textViewSimpleText, textViewNumber, textViewJSONObject,textViewJSONArray, textViewBoolean;
+    Button buttonRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        textView = findViewById(R.id.textView);
-        textStatus = findViewById(R.id.textStatus);
+        textViewSimpleText = findViewById(R.id.textViewSimpleText);
+        textViewNumber = findViewById(R.id.textViewNumber);
+        textViewJSONObject = findViewById(R.id.textViewJSONObject);
+        textViewJSONArray = findViewById(R.id.textViewJSONArray);
+        textViewBoolean = findViewById(R.id.textViewBoolean);
+
+        buttonRequest = findViewById(R.id.buttonRequest);
 
 
-        textView.setOnClickListener(new View.OnClickListener() {
+        buttonRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -40,17 +50,27 @@ public class MainActivity extends AppCompatActivity {
                             public void onComplete() {
                                 // json file retrieved
                                 RemoteParams remoteParams = new RemoteParams(MainActivity.this);
-                                textView.setText(remoteParams.getString("short_text", "default_text"));
+                                textViewSimpleText.setText(remoteParams.getString("short_text", "default_text"));
 
-                                textStatus.setText(R.string.app_response);
+                                int intValue = remoteParams.getInt("number", 200);
+                                textViewNumber.setText(String.valueOf(intValue));
+
+                                JSONObject jsonObject = remoteParams.getJSONObject("json_object");
+                                textViewJSONObject.setText(String.valueOf(jsonObject));
+
+                                JSONArray jsonArray = remoteParams.getJSONArray("json_array");
+                                textViewJSONArray.setText(String.valueOf(jsonArray));
+
+                                boolean booleanValue = remoteParams.getBoolean("boolean", false);
+                                textViewBoolean.setText(String.valueOf(booleanValue));
+
                             }
                         },
                         new Response.ErrorListener() {
                             @Override
                             public void onError(RemoteError error) {
                                 // json file retrieve error
-                                textView.setText(error.toString());
-                                textStatus.setText(R.string.app_error);
+
                             }
                         }
                 );
