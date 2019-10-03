@@ -23,7 +23,7 @@ allprojects {
 
 ```groovy
 dependencies {
-	implementation 'com.github.gayankuruppu:android-remote-config-library:1.0.2'
+	implementation 'com.github.gayankuruppu:android-remote-config-library:1.0.3'
 }
 ```
 
@@ -48,7 +48,7 @@ dependencies {
 <dependency>
 	<groupId>com.github.gayankuruppu</groupId>
 	<artifactId>android-remote-config-library</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 </dependency>
 ```
 ## Usage
@@ -62,38 +62,49 @@ dependencies {
 
 ```java
 import com.remoteconfig.library.*;
-import com.remoteconfig.library.toolbox.*;
 ```
 
 ### Set request
 
 ```java
 // set request
-RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+RequestQueue queue = FetchRemote.newRequestQueue(MainActivity.this);
 
 // url of the json file
 String mUrl ="https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-config.json";
 
 // request the json file
 RemoteConfig remoteConfig = new RemoteConfig(MainActivity.this, mUrl,
-        new Response.Listener<String>() {
-            @Override
-            public void onComplete() {
-                // json file retrieved
-                RemoteParams remoteParams = new RemoteParams(MainActivity.this);
-                textView.setText(remoteParams.getString("short_text", "some_text"));
-
-                textStatus.setText(R.string.app_response);
-            }
-        },
-        new Response.ErrorListener() {
-            @Override
-            public void onError(RemoteError error) {
-                // json file retrieve error
-                textView.setText(error.toString());
-                textStatus.setText(R.string.app_error);
-            }
-        }
+	new Response.Listener<String>() {
+		@Override
+		public void onComplete() {
+			// json file retrieved
+			
+			// declare remote param
+			RemoteParams remoteParams = new RemoteParams(MainActivity.this);
+			
+			// get String value
+			String stringValue = remoteParams.getString("short_text", "default_text");
+			
+			// get int values
+			int intValue = remoteParams.getInt("number", 200);
+			
+			// get JSON Object
+			JSONObject jsonObject = remoteParams.getJSONObject("json_object");
+			
+			// get JSON Array
+			JSONArray jsonArray = remoteParams.getJSONArray("json_array");
+			
+			// get boolean value
+			boolean booleanValue = remoteParams.getBoolean("boolean", false);
+		}
+	},
+	new Response.ErrorListener() {
+		@Override
+		public void onError(RemoteError error) {
+			// json file retrieve error
+		}
+	}
 );
 
 // clear cache
