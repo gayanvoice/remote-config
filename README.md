@@ -56,6 +56,7 @@ dependencies {
 
 ```java
 import com.remoteconfig.library.*;
+import com.remoteconfig.library.toolbox.*;
 ```
 
 ### Set request
