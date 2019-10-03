@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/gayankuruppu/android-remote-config-library.svg?branch=master)](https://travis-ci.org/gayankuruppu/android-remote-config-library) [![](https://jitpack.io/v/gayankuruppu/android-remote-config-library.svg)](https://jitpack.io/#gayankuruppu/android-remote-config-library) [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/gayankuruppu/android-remote-config-library)
 
-<img width="360" alt="Android View Animations in Java" src="https://gayankuruppu.github.io/android-view-animations-java/static/media/2-android-view-animations-java.1fe3487e.gif">
+<img width="360" alt="Android View Animations in Java" src="https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-configure-app.gif">
 
 Remote config the appearance and the behavior of your app, without, publishing an app update.
 ## Get
