@@ -25,6 +25,19 @@ allprojects {
 dependencies {
 	implementation 'com.github.gayankuruppu:android-remote-config-library:1.0.0'
 }
+More than one file was found with OS independent path 'META-INF/DEPENDENCIES'
+android {
+        packagingOptions {
+            exclude 'META-INF/DEPENDENCIES'
+            exclude 'META-INF/LICENSE'
+            exclude 'META-INF/LICENSE.txt'
+            exclude 'META-INF/license.txt'
+            exclude 'META-INF/NOTICE'
+            exclude 'META-INF/NOTICE.txt'
+            exclude 'META-INF/notice.txt'
+            exclude 'META-INF/ASL2.0'
+        }
+    }
 ```
 
 ### Or
