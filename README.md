@@ -6,8 +6,8 @@ Remote config the appearance and the behavior of your app, without, publishing a
 
 <img width="360" alt="Android View Animations in Java" src="https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-configure-app.gif">
 
-Library retrieves the JSON file from https://github.com/gayankuruppu/android-remote-config-library/blob/master/remote-config.json
-To configure your JSON file, you can `fork` the library and change the data in the JSON file.
+Library retrieves the JSON file from https://github.com/gayankuruppu/android-remote-config-library/blob/master/remote-config.json.
+To configure the data in the JSON file, you can `fork` the library and change the data in the JSON file.
 
 ## Get
 ### Gradle
