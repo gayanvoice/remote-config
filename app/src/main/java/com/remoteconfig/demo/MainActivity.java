@@ -34,14 +34,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                // set request
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+
+                // url of the json file
                 String mUrl ="https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-config.json";
 
+                // request the json file
                 RemoteConfig remoteConfig = new RemoteConfig(MainActivity.this, mUrl,
                         new Response.Listener<String>() {
                             @Override
                             public void onComplete() {
-
+                                // json file retrieved
                                 RemoteParams remoteParams = new RemoteParams(MainActivity.this);
                                 textView.setText(remoteParams.getString("short_text", "some_text"));
 
@@ -51,12 +55,14 @@ public class MainActivity extends AppCompatActivity {
                         new Response.ErrorListener() {
                             @Override
                             public void onError(RemoteError error) {
+                                // json file retrieve error
                                 textView.setText(error.toString());
                                 textStatus.setText(R.string.app_error);
                             }
                         }
                 );
 
+                // clear cache
                 remoteConfig.setShouldCache(false);
                 queue.add(remoteConfig);
 
