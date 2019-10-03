@@ -1,4 +1,4 @@
-# android-remote-config-library
+# Android Remote Config Library
 
 [![](https://jitpack.io/v/gayankuruppu/android-remote-config-library.svg)](https://jitpack.io/#gayankuruppu/android-remote-config-library)
 
