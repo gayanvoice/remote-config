@@ -52,19 +52,19 @@ dependencies {
 </dependency>
 ```
 ## Usage
-### Set internet permission
-
+#### Set internet permission
 ```groovy
 <uses-permission android:name="android.permission.INTERNET" />
 ```
 
-### Import remote config library
+### Java
+#### Import remote config library
 
 ```java
 import com.remoteconfig.library.*;
 ```
 
-### Set request
+#### Set request
 
 ```java
 // set request
@@ -110,4 +110,50 @@ RemoteConfig remoteConfig = new RemoteConfig(MainActivity.this, url,
 // clear cache
 remoteConfig.setShouldCache(false);
 queue.add(remoteConfig);
+```
+### Kotlin
+#### Import remote config library
+```java
+import com.remoteconfig.library.*
+```
+
+#### Set request
+```kotlin
+// set request
+val queue = FetchRemote.newRequestQueue(this@MainActivity)
+
+// url of the json file
+val url = "https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-config.json"
+
+// request the json file
+val remoteConfig = RemoteConfig(this@MainActivity, url,
+	Response.Listener<String> {
+		// json file retrieved
+
+		// declare remote param
+		val remoteParams = RemoteParams(this@MainActivity)
+
+		// get String value
+		val stringValue = remoteParams.getString("short_text", "default_text")
+
+		// get int values
+		val intValue = remoteParams.getInt("number", 200)
+
+		// get JSON Object
+		val jsonObject = remoteParams.getJSONObject("json_object")
+
+		// get JSON Array
+		val jsonArray = remoteParams.getJSONArray("json_array")
+
+		// get boolean value
+		val booleanValue = remoteParams.getBoolean("boolean", false)
+		},
+		Response.ErrorListener {
+		    // json file retrieve error
+	}
+)
+
+// clear cache
+remoteConfig.setShouldCache(false)
+queue.add(remoteConfig)
 ```
