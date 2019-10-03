@@ -2,7 +2,7 @@
 
 [![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/gayankuruppu/android-remote-config-library.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/gayankuruppu/android-remote-config-library/context:java) [![Build Status](https://travis-ci.org/gayankuruppu/android-remote-config-library.svg?branch=master)](https://travis-ci.org/gayankuruppu/android-remote-config-library) [![Total alerts](https://img.shields.io/lgtm/alerts/g/gayankuruppu/android-remote-config-library.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/gayankuruppu/android-remote-config-library/alerts/) [![](https://jitpack.io/v/gayankuruppu/android-remote-config-library.svg)](https://jitpack.io/#gayankuruppu/android-remote-config-library) [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/gayankuruppu/android-remote-config-library)
 
-Remote config the appearance and the behavior of your app, without, publishing an app update. 
+A cool alternative for Google firebase remote-config library! Remote config the variables, appearance and the behavior of your app without publishing an app update.
 
 <img width="360" alt="Android View Animations in Java" src="https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-configure-app.gif">
 
