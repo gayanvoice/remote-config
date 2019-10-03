@@ -1,5 +1,5 @@
 {
-  "short_text":"gayankuruppu/android-remote-config",
+  "short_text":"gayankuruppu/android-remote-config-lib",
   "number":300221,
   "json_object":{"name":"John", "age":30, "city":"New York"},
   "json_array":["John", "Anna", "Peter"],
