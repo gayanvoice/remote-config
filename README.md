@@ -55,7 +55,7 @@ dependencies {
 import com.remoteconfig.library.*;
 ```
 
-### Start animation
+### Set request
 
 ```java
 // set request
