@@ -11,7 +11,6 @@ Remote config the appearance and the behavior of your app, without, publishing a
 1. Add this to `build.gradle` of project gradle dependency
 
 ```groovy
- <uses-permission android:name="android.permission.INTERNET"/>
 allprojects {
 	repositories {
 		...
