@@ -1,6 +1,7 @@
 # Android Remote Config Library
 
 [![](https://jitpack.io/v/gayankuruppu/android-remote-config-library.svg)](https://jitpack.io/#gayankuruppu/android-remote-config-library)
+
 Remote config the appearance and the behavior of your app, without, publishing an app update.
 ## Get
 ### Gradle
