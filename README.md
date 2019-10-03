@@ -1,4 +1,4 @@
-# android-remote-config-library
+# Android Remote Config Library
 
 [![](https://jitpack.io/v/gayankuruppu/android-remote-config-library.svg)](https://jitpack.io/#gayankuruppu/android-remote-config-library)
 
@@ -11,7 +11,6 @@ Remote config the appearance and the behavior of your app, without, publishing a
 1. Add this to `build.gradle` of project gradle dependency
 
 ```groovy
- <uses-permission android:name="android.permission.INTERNET"/>
 allprojects {
 	repositories {
 		...
@@ -24,21 +23,8 @@ allprojects {
 
 ```groovy
 dependencies {
-	implementation 'com.github.gayankuruppu:android-remote-config-library:1.0.0'
+	implementation 'com.github.gayankuruppu:android-remote-config-library:1.0.2'
 }
-More than one file was found with OS independent path 'META-INF/DEPENDENCIES'
-android {
-        packagingOptions {
-            exclude 'META-INF/DEPENDENCIES'
-            exclude 'META-INF/LICENSE'
-            exclude 'META-INF/LICENSE.txt'
-            exclude 'META-INF/license.txt'
-            exclude 'META-INF/NOTICE'
-            exclude 'META-INF/NOTICE.txt'
-            exclude 'META-INF/notice.txt'
-            exclude 'META-INF/ASL2.0'
-        }
-    }
 ```
 
 ### Or
@@ -62,11 +48,17 @@ android {
 <dependency>
 	<groupId>com.github.gayankuruppu</groupId>
 	<artifactId>android-remote-config-library</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.2</version>
 </dependency>
 ```
 ## Usage
-### Import Remote Config Library
+### Set internet permission
+
+```groovy
+<uses-permission android:name="android.permission.INTERNET" />
+```
+
+### Import remote config library
 
 ```java
 import com.remoteconfig.library.*;
