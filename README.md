@@ -1,4 +1,7 @@
 # android-remote-config-library
+
+[![](https://jitpack.io/v/gayankuruppu/android-remote-config-library.svg)](https://jitpack.io/#gayankuruppu/android-remote-config-library)
+
 Remote config the appearance and the behavior of your app, without, publishing an app update.
 
 ## Get
@@ -8,6 +11,7 @@ Remote config the appearance and the behavior of your app, without, publishing a
 1. Add this to `build.gradle` of project gradle dependency
 
 ```groovy
+ <uses-permission android:name="android.permission.INTERNET"/>
 allprojects {
 	repositories {
 		...
@@ -22,6 +26,19 @@ allprojects {
 dependencies {
 	implementation 'com.github.gayankuruppu:android-remote-config-library:1.0.0'
 }
+More than one file was found with OS independent path 'META-INF/DEPENDENCIES'
+android {
+        packagingOptions {
+            exclude 'META-INF/DEPENDENCIES'
+            exclude 'META-INF/LICENSE'
+            exclude 'META-INF/LICENSE.txt'
+            exclude 'META-INF/license.txt'
+            exclude 'META-INF/NOTICE'
+            exclude 'META-INF/NOTICE.txt'
+            exclude 'META-INF/notice.txt'
+            exclude 'META-INF/ASL2.0'
+        }
+    }
 ```
 
 ### Or
@@ -53,9 +70,10 @@ dependencies {
 
 ```java
 import com.remoteconfig.library.*;
+import com.remoteconfig.library.toolbox.*;
 ```
 
-### Start animation
+### Set request
 
 ```java
 // set request
