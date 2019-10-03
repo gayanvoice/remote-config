@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 
 import com.remoteconfig.library.RemoteParams;
-import com.remoteconfig.library.Request;
 import com.remoteconfig.library.RequestQueue;
 import com.remoteconfig.library.Response;
 import com.remoteconfig.library.RemoteError;
@@ -22,9 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
     TextView textView, textStatus;
 
-    RemoteConfig remoteConfig;
-    String mUrl;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,18 +29,15 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         textStatus = findViewById(R.id.textStatus);
 
-        mUrl ="https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-config.json";
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                queue.getCache().clear();
+                String mUrl ="https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-config.json";
 
-                remoteConfig = new RemoteConfig(
-                        MainActivity.this,
-                        mUrl,
+                RemoteConfig remoteConfig = new RemoteConfig(MainActivity.this, mUrl,
                         new Response.Listener<String>() {
                             @Override
                             public void onComplete() {
@@ -64,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                 );
 
+                remoteConfig.setShouldCache(false);
                 queue.add(remoteConfig);
 
             }
