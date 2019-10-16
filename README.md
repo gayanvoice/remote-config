@@ -1,12 +1,12 @@
 # Android Remote Config Library
 
-[![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/gayankuruppu/android-remote-config-library.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/gayankuruppu/android-remote-config-library/context:java) [![Build Status](https://travis-ci.org/gayankuruppu/android-remote-config-library.svg?branch=master)](https://travis-ci.org/gayankuruppu/android-remote-config-library) [![Total alerts](https://img.shields.io/lgtm/alerts/g/gayankuruppu/android-remote-config-library.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/gayankuruppu/android-remote-config-library/alerts/) [![](https://jitpack.io/v/gayankuruppu/android-remote-config-library.svg)](https://jitpack.io/#gayankuruppu/android-remote-config-library) [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/gayankuruppu/android-remote-config-library)
+[![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/gayanvoice/android-remote-config-library.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/gayanvoice/android-remote-config-library/context:java) [![Build Status](https://travis-ci.org/gayanvoice/android-remote-config-library.svg?branch=master)](https://travis-ci.org/gayanvoice/android-remote-config-library) [![Total alerts](https://img.shields.io/lgtm/alerts/g/gayanvoice/android-remote-config-library.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/gayanvoice/android-remote-config-library/alerts/) [![](https://jitpack.io/v/gayanvoice/android-remote-config-library.svg)](https://jitpack.io/#gayanvoice/android-remote-config-library) [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/gayanvoice/android-remote-config-library)
 
 A cool alternative for Google firebase remote-config library! Remote config the variables, appearance and the behavior of your app without publishing an app update. The library is based on Google Volley library.
 
-<img width="360" alt="Android View Animations in Java" src="https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-configure-app.gif">
+<img width="360" alt="Android View Animations in Java" src="https://raw.githubusercontent.com/gayanvoice/android-remote-config-library/master/remote-configure-app.gif">
 
-Library retrieves the JSON file from https://github.com/gayankuruppu/android-remote-config-library/blob/master/remote-config.json.
+Library retrieves the JSON file from https://github.com/gayanvoice/android-remote-config-library/blob/master/remote-config.json.
 To configure the data in the JSON file, you can `fork` the library and change the data in the JSON file.
 
 ## Get
@@ -23,7 +23,7 @@ allprojects {
 2. Add this to `build.gradle` of app gradle dependency
 ```groovy
 dependencies {
-	implementation 'com.github.gayankuruppu:android-remote-config-library:1.0.3'
+	implementation 'com.github.gayanvoice:android-remote-config-library:1.0.3'
 }
 ```
 ### Or
@@ -41,7 +41,7 @@ dependencies {
 2. Add this to `build.gradle` of module gradle dependency
 ```xml
 <dependency>
-	<groupId>com.github.gayankuruppu</groupId>
+	<groupId>com.github.gayanvoice</groupId>
 	<artifactId>android-remote-config-library</artifactId>
 	<version>1.0.3</version>
 </dependency>
@@ -63,7 +63,7 @@ import com.remoteconfig.library.*;
 RequestQueue queue = FetchRemote.newRequestQueue(MainActivity.this);
 
 // url of the json file
-String url ="https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-config.json";
+String url ="https://raw.githubusercontent.com/gayanvoice/android-remote-config-library/master/remote-config.json";
 
 // request the json file
 RemoteConfig remoteConfig = new RemoteConfig(MainActivity.this, url,
@@ -114,7 +114,7 @@ import com.remoteconfig.library.*
 val queue = FetchRemote.newRequestQueue(this@MainActivity)
 
 // url of the json file
-val url = "https://raw.githubusercontent.com/gayankuruppu/android-remote-config-library/master/remote-config.json"
+val url = "https://raw.githubusercontent.com/gayanvoice/android-remote-config-library/master/remote-config.json"
 
 // request the json file
 val remoteConfig = RemoteConfig(this@MainActivity, url,
@@ -155,4 +155,4 @@ queue.add(remoteConfig)
 3. Click `Yes` to open the repository
 4. `Build` using the latest `Gradle` version
 
-Go to https://github.com/gayankuruppu/android-vpn-client-ics-openvpn#develop see the steps
+Go to https://github.com/gayanvoice/android-vpn-client-ics-openvpn#develop see the steps
