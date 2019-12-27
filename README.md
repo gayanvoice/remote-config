@@ -23,7 +23,7 @@ allprojects {
 2. Add this to `build.gradle` of app gradle dependency
 ```groovy
 dependencies {
-	implementation 'com.github.gayanvoice:android-remote-config-library:1.0.3'
+	implementation 'com.github.gayanvoice:android-remote-config-library-firebase:1.0.3'
 }
 ```
 ### Or
@@ -42,7 +42,7 @@ dependencies {
 ```xml
 <dependency>
 	<groupId>com.github.gayanvoice</groupId>
-	<artifactId>android-remote-config-library</artifactId>
+	<artifactId>android-remote-config-library-firebase</artifactId>
 	<version>1.0.3</version>
 </dependency>
 ```
