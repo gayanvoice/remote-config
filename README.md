@@ -42,7 +42,7 @@ dependencies {
 ```xml
 <dependency>
 	<groupId>com.github.gayanvoice</groupId>
-	<artifactId>android-remote-config-library-firebase</artifactId>
+	<artifactId>remote-config</artifactId>
 	<version>1.0.3</version>
 </dependency>
 ```
@@ -63,7 +63,7 @@ import com.remoteconfig.library.*;
 RequestQueue queue = FetchRemote.newRequestQueue(MainActivity.this);
 
 // url of the json file
-String url ="https://raw.githubusercontent.com/gayanvoice/android-remote-config-library/master/remote-config.json";
+String url ="https://raw.githubusercontent.com/gayanvoice/remote-config/master/remote-config.json";
 
 // request the json file
 RemoteConfig remoteConfig = new RemoteConfig(MainActivity.this, url,
@@ -114,7 +114,7 @@ import com.remoteconfig.library.*
 val queue = FetchRemote.newRequestQueue(this@MainActivity)
 
 // url of the json file
-val url = "https://raw.githubusercontent.com/gayanvoice/android-remote-config-library/master/remote-config.json"
+val url = "https://raw.githubusercontent.com/gayanvoice/remote-config/master/remote-config.json"
 
 // request the json file
 val remoteConfig = RemoteConfig(this@MainActivity, url,
